@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-charcoal: #0f1115;
+  --color-coal: #16181f;
+  --color-orange: #ff7a1a;
+  --color-sand: #f7f2ec;
+  --color-glow: #ffd9b3;
+}
+
+* { scrollbar-width: thin; scrollbar-color: var(--color-orange) transparent; }
+
+body {
+  background: radial-gradient(900px at 20% 10%, rgba(255,122,26,0.08), transparent),
+    radial-gradient(800px at 80% 0%, rgba(255,217,179,0.12), transparent),
+    #fff;
+}
+
+@layer base {
+  h1, h2, h3, h4 { @apply font-display text-charcoal; }
+  p { @apply text-charcoal/80; }
+}
+
+@layer components {
+  .container-tight { @apply mx-auto max-w-6xl px-6; }
+  .card { @apply rounded-2xl border border-black/5 bg-white/80 backdrop-blur shadow-soft; }
+  .pill { @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium; }
+  .grid-auto { @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3; }
+  .section-pad { @apply py-16 lg:py-24; }
+  .focus-ring { @apply focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2; }
+  .btn { @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2; }
+  .btn-primary { @apply bg-orange text-charcoal shadow hover:-translate-y-0.5 hover:shadow-card focus-visible:ring-orange focus-visible:ring-offset-2; }
+  .btn-secondary { @apply border border-charcoal/10 bg-white text-charcoal hover:border-orange hover:text-orange; }
+  .chip { @apply text-xs uppercase tracking-[0.25em] text-charcoal/50; }
+}
+
+.reveal { opacity: 0; transform: translateY(18px); }
+.reveal[data-visible='true'] { opacity: 1; transform: translateY(0); animation: fadeUp 650ms ease-out forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
