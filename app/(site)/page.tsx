@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { Header } from '../components/Header';
-import { CTAButton } from '../components/CTAButton';
+import { Header } from '../../components/Header';
+import { CTAButton } from '../../components/CTAButton';
 import { Badge } from '../../components/Badge';
 import { Modal } from '../../components/Modal';
 import { PriceEstimator } from '../../components/PriceEstimator';
