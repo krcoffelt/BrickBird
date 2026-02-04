@@ -3,8 +3,8 @@
 Premium single-page marketing site for BrickBird (small-business growth studio). Built with Next.js 14, React, TypeScript, and Tailwind.
 
 ## Run locally
-1. Install deps: `npm install`
-2. Dev server: `npm run dev` (opens on http://localhost:3000)
+1. Install deps: `npm install --no-audit --progress=false`
+2. Dev server: `npm run dev` (http://localhost:3000) or `npm run dev:3002` (binds 0.0.0.0:3002 for containers/ports)
 3. Production build: `npm run build && npm run start`
 
 ## Deploy
