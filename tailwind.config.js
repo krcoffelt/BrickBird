@@ -1,18 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-const withOpacity = (variable) => `rgb(var(${variable}) / <alpha-value>)`;
-
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        charcoal: withOpacity('--color-charcoal'),
-        coal: withOpacity('--color-coal'),
-        orange: withOpacity('--color-orange'),
-        sand: withOpacity('--color-sand'),
-        glow: withOpacity('--color-glow'),
+        charcoal: 'var(--color-charcoal)',
+        coal: 'var(--color-coal)',
+        orange: 'var(--color-orange)',
+        sand: 'var(--color-sand)',
+        glow: 'var(--color-glow)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
