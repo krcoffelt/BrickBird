@@ -4,18 +4,18 @@
 
 :root {
   /* RGB triples (space-separated) so Tailwind can generate /opacity variants. */ 
-  --color-charcoal: 15 17 21;
-  --color-coal: 22 24 31;
-  --color-orange: 255 122 26;
-  --color-sand: 247 242 236;
-  --color-glow: 255 217 179;
+  --color-charcoal: 17 24 39; /* slate-900-ish */
+  --color-coal: 31 41 55; /* slate-800-ish */
+  --color-orange: 66 133 244; /* Google blue */
+  --color-sand: 249 250 251; /* near-white */
+  --color-glow: 219 234 254; /* soft blue */
 }
 
 * { scrollbar-width: thin; scrollbar-color: rgb(var(--color-orange)) transparent; }
 
 body {
-  background: radial-gradient(900px at 20% 10%, rgb(var(--color-orange) / 0.08), transparent),
-    radial-gradient(800px at 80% 0%, rgb(var(--color-glow) / 0.12), transparent),
+  background: radial-gradient(900px at 20% 10%, rgb(var(--color-orange) / 0.10), transparent),
+    radial-gradient(800px at 80% 0%, rgb(var(--color-glow) / 0.22), transparent),
     #fff;
 }
 
@@ -26,10 +26,10 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(66,133,244,0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(66,133,244,0.10) 1px, transparent 1px);
   background-size: 72px 72px;
-  opacity: 0.18;
+  opacity: 0.14;
   mask-image: radial-gradient(900px at 20% 10%, black 20%, transparent 70%);
   animation: gridDrift 18s ease-in-out infinite;
 }
