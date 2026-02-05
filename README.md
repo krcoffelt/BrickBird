@@ -1,6 +1,6 @@
-# BrickBird marketing site
+# Always Found marketing site
 
-Premium single-page marketing site for BrickBird (small-business growth studio). Built with Next.js 14, React, TypeScript, and Tailwind.
+Premium single-page marketing site for Always Found (small-business growth studio). Built with Next.js 14, React, TypeScript, and Tailwind.
 
 ## Run locally
 1. Install deps: `npm install --no-audit --progress=false`

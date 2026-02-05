@@ -13,47 +13,47 @@ import { CheckIcon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 const services = [
   {
     title: 'Website Upkeep',
-    desc: 'Edits, new sections, promo bars, speed basics, uptime eyes on.',
+    desc: 'Edits, new sections, seasonal promos, and speed basics—kept sharp week to week.',
   },
   {
     title: 'Google Profile',
-    desc: 'Posts, updates, photos, Q&A tuned so you surface + convert.',
+    desc: 'Posts, photos, Q&A, and updates that match how customers search right now.',
   },
   {
     title: 'Reviews & Reputation',
-    desc: 'Review link system, response templates, monthly momentum plan.',
+    desc: 'A review link system and reply templates that build trust (and keep momentum).',
   },
 ];
 
 const pricing = [
   {
-    name: 'Starter',
+    name: 'Essentials',
     price: '$690/mo',
-    ideal: 'One location, light updates.',
-    includes: ['Site + GBP updates monthly', 'Speed & accessibility basics', 'Quarterly mini-report'],
+    ideal: 'One location, monthly cadence.',
+    includes: ['Website + GBP refresh monthly', 'Speed + accessibility basics', 'Monthly highlights note'],
   },
   {
-    name: 'Growth',
+    name: 'Momentum',
     price: '$1,090/mo',
-    ideal: 'Multi-location or weekly cadence.',
-    includes: ['Weekly GBP posts + photo drops', 'Website edits + promo launches', 'Monthly conversion report'],
+    ideal: 'Weekly presence, steady lift.',
+    includes: ['Weekly GBP posts + photo drops', 'Website edits + promo launches', 'Monthly conversion snapshot'],
   },
   {
-    name: 'Pro',
+    name: 'Partner',
     price: '$1,690/mo',
-    ideal: 'High-tempo, more collaboration.',
-    includes: ['Weekly site + GBP updates', 'Response templates + triage', 'Strategy sync + experiments'],
+    ideal: 'High-tempo, more hands-on.',
+    includes: ['Weekly site + GBP updates', 'Review system + response triage', 'Strategy sync + experiments'],
   },
 ];
 
 const faqs = [
-  ['Do you build new websites?', 'We focus on keeping what you have sharp; if a rebuild is needed, we scope separately.'],
-  ['How fast do you move?', 'Kickoff in Week 1. First visible changes within 7 days, then weekly or monthly updates.'],
-  ['What access do you need?', 'Editor access to your site/CMS and Google Business Profile plus a shared inbox for reviews.'],
-  ['Squarespace or WordPress okay?', 'Yes. We work across popular CMS platforms and handle light dev tweaks as needed.'],
-  ['Contracts?', 'Month-to-month. Stay because it performs, not because of lock-in.'],
-  ['What results should I expect?', 'More accurate info, fresher visuals, better click-to-call and direction requests.'],
-  ['What is not included?', 'Ad spend, full rebrands, heavy custom dev.'],
+  ['Do you build new websites?', 'We focus on keeping what you have current. If you need a rebuild, we can scope it separately.'],
+  ['How fast do you move?', 'Kickoff in Week 1. First changes in 7 days, then weekly or monthly updates.'],
+  ['What access do you need?', 'Editor access to your site/CMS and Google Business Profile, plus a place to triage reviews.'],
+  ['Squarespace or WordPress okay?', 'Yes—Squarespace, WordPress, Webflow, Shopify, and most CMS platforms.'],
+  ['Contracts?', 'Month-to-month. Stay because it’s working, not because you’re locked in.'],
+  ['What results should I expect?', 'Cleaner listings, fresher visuals, better click-to-call and direction requests.'],
+  ['What is not included?', 'Ad spend, full rebrands, heavy custom dev, or net-new photography shoots.'],
 ];
 
 function TrustBullets() {
@@ -79,7 +79,7 @@ function HeroVisual() {
       <div className="relative">
         <p className="chip">What you get</p>
         <h3 className="mt-2 text-2xl font-semibold">Always current.</h3>
-        <p className="mt-2 text-sm text-charcoal/70">Three surfaces. One rhythm. Zero scramble.</p>
+        <p className="mt-2 text-sm text-charcoal/70">The stuff people check before they call.</p>
 
         <div className="mt-6 grid gap-3">
           {[
@@ -125,11 +125,11 @@ function DashboardMock() {
     <div className="card grid gap-6 p-6 md:grid-cols-2">
       <div>
         <p className="chip">Example outcomes</p>
-        <h3 className="text-lg font-semibold">More calls. More direction requests. Higher trust.</h3>
+        <h3 className="text-lg font-semibold">More calls. More direction requests. More “they look legit.”</h3>
         <ul className="mt-4 space-y-3 text-sm text-charcoal/80">
-          <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Fresh hours + promos reflect everywhere.</li>
-          <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Weekly GBP posts keep you above nearby options.</li>
-          <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Review replies show you care and improve keywords.</li>
+          <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Accurate hours + services everywhere.</li>
+          <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Consistent posting keeps you visible.</li>
+          <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Review replies show you care (and help relevance).</li>
         </ul>
       </div>
       <div className="rounded-xl border border-charcoal/10 bg-gradient-to-br from-white to-sand p-4">
@@ -160,9 +160,9 @@ function DashboardMock() {
 
 function Testimonials() {
   const quotes = [
-    '“We finally look open online—and the calls followed.”',
-    '“Changes go live without hand-holding. Huge relief.”',
-    '“Review replies sound human now. Feels like us.”',
+    '“We finally look current online—and the calls followed.”',
+    '“Changes go live without hand-holding. Total relief.”',
+    '“Our review replies sound like a real person. Finally.”',
   ];
   return (
     <div className="grid gap-4 md:grid-cols-3">
@@ -201,9 +201,9 @@ function Pricing({ onBook }: { onBook: () => void }) {
               ))}
             </ul>
             <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
-            <CTAButton className="mt-auto w-full" onClick={onBook}>
-              Book a Call
-            </CTAButton>
+              <CTAButton className="mt-auto w-full" onClick={onBook}>
+                Book a Call
+              </CTAButton>
           </div>
         </Reveal>
       ))}
@@ -255,12 +255,12 @@ function Footer() {
       <div className="container-tight flex flex-col gap-4 py-8 text-sm text-charcoal/70 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2 text-charcoal">
           <div className="h-8 w-8 rounded-lg bg-charcoal" />
-          BrickBird — Build trust. Get seen.
+          Always Found — Build trust. Get seen.
         </div>
         <div className="flex flex-wrap items-center gap-4">
           <Link href="/privacy" className="hover:text-charcoal">Privacy</Link>
           <Link href="/terms" className="hover:text-charcoal">Terms</Link>
-          <span>© {new Date().getFullYear()} BrickBird</span>
+          <span>© {new Date().getFullYear()} Always Found</span>
           <div className="flex gap-2 text-charcoal/60">
             <span>IG</span>
             <span>LI</span>
@@ -306,10 +306,10 @@ export default function Page() {
       <main>
         <section className="container-tight grid gap-10 pb-16 pt-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center" id="top">
           <div ref={heroReveal.ref} className="reveal" data-visible={heroReveal.visible}>
-            <Badge>BrickBird · Build trust. Get seen.</Badge>
-            <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">Your business, always up to date.</h1>
+            <Badge>Always Found · Build trust. Get seen.</Badge>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">Your business, always found.</h1>
             <p className="mt-4 max-w-xl text-lg text-charcoal/75">
-              We keep your website + Google profile fresh, accurate, and converting—so you get found and chosen.
+              We keep your website, Google profile, and reviews current—so you show up and look trustworthy every day.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {bookButton}
@@ -372,15 +372,15 @@ export default function Page() {
           <div className="container-tight card grid gap-8 p-8 md:grid-cols-[1.1fr_0.9fr]">
             <div>
               <p className="chip">Ready when you are</p>
-              <h2 className="mt-2 text-3xl font-semibold">Let’s keep you chosen.</h2>
-              <p className="mt-3 text-charcoal/75">We’ll review your site + GBP, suggest a plan, and start updates in Week 1.</p>
+              <h2 className="mt-2 text-3xl font-semibold">Let’s keep you findable.</h2>
+              <p className="mt-3 text-charcoal/75">We’ll review your site + Google profile, suggest a cadence, and ship Week 1 updates.</p>
               <ul className="mt-6 space-y-2 text-sm text-charcoal/80">
                 <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Accuracy sweep (hours, services, categories).</li>
                 <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Quick conversion fixes (CTA, clarity, speed basics).</li>
-                <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Update cadence recommendation (weekly vs monthly).</li>
+                <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Cadence recommendation (weekly vs monthly).</li>
               </ul>
               <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-charcoal/80">
-                <div className="flex items-center gap-2"><EnvelopeIcon className="h-4 w-4" /> hello@brickbird.studio</div>
+                <div className="flex items-center gap-2"><EnvelopeIcon className="h-4 w-4" /> hello@alwaysfound.studio</div>
                 <div className="flex items-center gap-2"><PhoneIcon className="h-4 w-4" /> (555) 123-0199</div>
               </div>
             </div>
@@ -407,7 +407,7 @@ export default function Page() {
 
       <Footer />
 
-      <Modal open={open} onClose={() => setOpen(false)} title="BrickBird call">
+      <Modal open={open} onClose={() => setOpen(false)} title="Always Found call">
         <form className="space-y-3" onSubmit={handleSubmit}>
           <div>
             <label className="text-sm font-medium text-charcoal">Name</label>

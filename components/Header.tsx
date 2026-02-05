@@ -30,7 +30,7 @@ export function Header({ onBook }: Props) {
               <rect x="30" y="34" width="14" height="10" rx="2" fill="currentColor" opacity="0.9" />
             </svg>
           </div>
-          BrickBird
+          Always Found
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium text-charcoal/80 md:flex">
           {['Services', 'Proof', 'Pricing', 'Process', 'FAQ'].map((item) => (

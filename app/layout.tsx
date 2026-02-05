@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 const space = Space_Grotesk({ subsets: ['latin'], variable: '--font-space', display: 'swap' });
 
 export const metadata: Metadata = {
-  title: 'BrickBird — Build trust. Get seen.',
-  description: 'Monthly upkeep for your website and Google Business Profile so you stay chosen.',
+  title: 'Always Found — Build trust. Get seen.',
+  description: 'Monthly upkeep for your website, Google Business Profile, and reviews so you stay accurate and get chosen.',
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };
 
