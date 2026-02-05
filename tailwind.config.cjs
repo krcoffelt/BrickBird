@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        charcoal: 'var(--color-charcoal)',
-        coal: 'var(--color-coal)',
-        orange: 'var(--color-orange)',
-        sand: 'var(--color-sand)',
-        glow: 'var(--color-glow)',
+        charcoal: 'rgb(var(--color-charcoal) / <alpha-value>)',
+        coal: 'rgb(var(--color-coal) / <alpha-value>)',
+        orange: 'rgb(var(--color-orange) / <alpha-value>)',
+        sand: 'rgb(var(--color-sand) / <alpha-value>)',
+        glow: 'rgb(var(--color-glow) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
