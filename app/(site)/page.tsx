@@ -57,21 +57,47 @@ const faqs = [
 ];
 
 function TrustBullets() {
-  const items = [
-    ['Fast', 'Updates shipped weekly, not someday.'],
-    ['Simple', 'You send a note; we polish, publish, confirm.'],
-    ['Measurable', 'Track calls, clicks, and direction requests.'],
-  ];
+  const items = [['Fast'], ['Simple'], ['Measurable']];
   return (
-    <div className="mt-8 grid gap-3 sm:grid-cols-3">
-      {items.map(([title, desc]) => (
-        <div key={title} className="rounded-xl border border-charcoal/5 bg-white/80 p-4 shadow-sm">
-          <div className="flex items-center gap-2 text-sm font-semibold text-charcoal">
-            <div className="h-2 w-2 rounded-full bg-orange" /> {title}
-          </div>
-          <p className="mt-2 text-sm text-charcoal/70">{desc}</p>
-        </div>
+    <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-charcoal/70">
+      {items.map(([title], idx) => (
+        <span key={title} className="inline-flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-orange" aria-hidden />
+          <span className="font-semibold text-charcoal">{title}</span>
+          {idx < items.length - 1 && <span className="ml-2 hidden text-charcoal/20 sm:inline">/</span>}
+        </span>
       ))}
+    </div>
+  );
+}
+
+function HeroVisual() {
+  return (
+    <div className="card relative overflow-hidden p-6">
+      <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-orange/15 blur-2xl" aria-hidden />
+      <div className="absolute -bottom-14 -left-10 h-52 w-52 rounded-full bg-glow/20 blur-3xl" aria-hidden />
+      <div className="relative">
+        <p className="chip">What you get</p>
+        <h3 className="mt-2 text-2xl font-semibold">Always current.</h3>
+        <p className="mt-2 text-sm text-charcoal/70">Three surfaces. One rhythm. Zero scramble.</p>
+
+        <div className="mt-6 grid gap-3">
+          {[
+            ['Website', 'Fresh copy + promos'],
+            ['Google Profile', 'Posts + photos'],
+            ['Reviews', 'Asks + replies'],
+          ].map(([label, sub]) => (
+            <div key={label} className="flex items-center justify-between rounded-xl border border-charcoal/10 bg-white/70 p-4">
+              <div>
+                <p className="text-sm font-semibold text-charcoal">{label}</p>
+                <p className="mt-1 text-xs text-charcoal/60">{sub}</p>
+              </div>
+              <span className="pill bg-orange/10 text-orange">Kept current</span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-5 text-xs text-charcoal/60">Week 1 setup, then weekly or monthly updates.</p>
+      </div>
     </div>
   );
 }
@@ -278,7 +304,7 @@ export default function Page() {
       <Header onBook={() => setOpen(true)} />
 
       <main>
-        <section className="container-tight grid gap-10 pb-16 pt-14 sm:grid-cols-[1.2fr_1fr] sm:items-center" id="top">
+        <section className="container-tight grid gap-10 pb-16 pt-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center" id="top">
           <div ref={heroReveal.ref} className="reveal" data-visible={heroReveal.visible}>
             <Badge>BrickBird · Build trust. Get seen.</Badge>
             <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">Your business, always up to date.</h1>
@@ -293,61 +319,10 @@ export default function Page() {
             </div>
             <TrustBullets />
           </div>
-          <div className="relative">
-            <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-orange/20 blur-2xl" aria-hidden />
-            <div className="card relative overflow-hidden p-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal text-white">
-                    <svg viewBox="0 0 64 64" className="mascot-bob h-7 w-7" aria-hidden>
-                      <path d="M8 32c12-8 20-8 32 0v6l-16 8-16-8z" fill="currentColor" opacity="0.9" />
-                      <path d="M24 20c6-6 14-8 26-4l-8 6c-4 2-9 6-12 12l-6-14z" fill="currentColor" opacity="0.6" />
-                      <rect x="30" y="34" width="14" height="10" rx="2" fill="currentColor" opacity="0.9" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-charcoal">BrickBird Care</p>
-                    <p className="text-xs text-charcoal/60">Weekly upkeep, quietly consistent.</p>
-                  </div>
-                </div>
-                <span className="pill bg-orange/15 text-orange">Weekly</span>
-              </div>
-              <div className="mt-6">
-                <p className="chip">This week</p>
-                <ul className="mt-3 space-y-3 text-sm text-charcoal/80">
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1.5 h-2 w-2 rounded-full bg-orange" />
-                    <div>
-                      <p className="font-semibold">Google profile refreshed</p>
-                      <p className="text-xs text-charcoal/60">Posts + photos aligned to what you sell now.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1.5 h-2 w-2 rounded-full bg-orange" />
-                    <div>
-                      <p className="font-semibold">Website tuned</p>
-                      <p className="text-xs text-charcoal/60">Promo + CTA tightened. Speed basics checked.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-1.5 h-2 w-2 rounded-full bg-orange" />
-                    <div>
-                      <p className="font-semibold">Reviews in motion</p>
-                      <p className="text-xs text-charcoal/60">Reply templates applied. Ask link ready.</p>
-                    </div>
-                  </li>
-                </ul>
-                <div className="mt-6 rounded-xl border border-charcoal/10 bg-white/70 p-4">
-                  <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/40">
-                    <span>Updates shipped</span>
-                    <span className="text-orange">3</span>
-                  </div>
-                  <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-charcoal/5">
-                    <div className="h-full w-2/3 origin-left rounded-full bg-orange/80 animate-pulseLine" />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="relative hidden lg:block">
+            <Reveal delayMs={120}>
+              <HeroVisual />
+            </Reveal>
           </div>
         </section>
 
