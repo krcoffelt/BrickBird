@@ -87,18 +87,18 @@ function HeroVisual() {
         <h3 className="mt-2 text-2xl font-semibold">The trust layer.</h3>
         <p className="mt-2 text-sm text-charcoal/70">The places customers verify you before they choose you.</p>
 
-        <div className="mt-6 grid gap-3">
+        <div className="mt-6 overflow-hidden rounded-xl border border-charcoal/10 bg-white/70">
           {[
-            ['Website', 'Clarity, promos, and polish'],
+            ['Website', 'Clarity, promos, polish'],
             ['Google Profile', 'Posts, photos, Q&A'],
             ['Reviews', 'Asks, replies, momentum'],
-          ].map(([label, sub]) => (
-            <div key={label} className="flex items-center justify-between rounded-xl border border-charcoal/10 bg-white/70 p-4">
+          ].map(([label, sub], idx) => (
+            <div key={label} className={`flex items-center justify-between p-4 ${idx ? 'border-t border-charcoal/10' : ''}`}>
               <div>
                 <p className="text-sm font-semibold text-charcoal">{label}</p>
                 <p className="mt-1 text-xs text-charcoal/60">{sub}</p>
               </div>
-              <span className="pill bg-orange/10 text-orange">Kept current</span>
+              <span className="text-xs font-semibold text-orange">Kept current</span>
             </div>
           ))}
         </div>
@@ -120,7 +120,7 @@ function Section({ id, title, kicker, children }: { id: string; title: string; k
             <div className="section-rule" aria-hidden />
           </div>
         </div>
-        <div className="mt-8">{children}</div>
+        <div className="mt-6">{children}</div>
       </div>
     </section>
   );
@@ -321,7 +321,7 @@ export default function Page() {
       <Header onBook={() => setOpen(true)} />
 
       <main>
-        <section className="container-tight grid gap-10 pb-16 pt-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center" id="top">
+        <section className="container-tight grid gap-8 pb-10 pt-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pb-14 lg:pt-14" id="top">
           <div ref={heroReveal.ref} className="reveal" data-visible={heroReveal.visible}>
             <Badge>Always Found · Build trust. Get seen.</Badge>
             <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">Always found. Always chosen.</h1>
@@ -347,7 +347,7 @@ export default function Page() {
           <div className="grid-auto">
             {services.map((service, i) => (
               <Reveal key={service.title} delayMs={i * 80}>
-                <div className="card p-6">
+                <div className="card p-5">
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-lg bg-orange/15" />
                     <h3 className="text-xl font-semibold">{service.title}</h3>
