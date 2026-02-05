@@ -19,6 +19,21 @@ body {
     #fff;
 }
 
+/* Subtle grid + drift for "alive" feeling without heavy JS. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.18;
+  mask-image: radial-gradient(900px at 20% 10%, black 20%, transparent 70%);
+  animation: gridDrift 18s ease-in-out infinite;
+}
+
 @layer base {
   h1, h2, h3, h4 { @apply font-display text-charcoal; }
   p { @apply text-charcoal/80; }
@@ -26,7 +41,7 @@ body {
 
 @layer components {
   .container-tight { @apply mx-auto max-w-6xl px-6; }
-  .card { @apply rounded-2xl border border-black/5 bg-white/80 backdrop-blur shadow-soft; }
+  .card { @apply rounded-2xl border border-black/5 bg-white/80 backdrop-blur shadow-soft transition-transform; }
   .pill { @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium; }
   .grid-auto { @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3; }
   .section-pad { @apply py-16 lg:py-24; }
@@ -35,11 +50,31 @@ body {
   .btn-primary { @apply bg-orange text-charcoal shadow hover:-translate-y-0.5 hover:shadow-card focus-visible:ring-orange focus-visible:ring-offset-2; }
   .btn-secondary { @apply border border-charcoal/10 bg-white text-charcoal hover:border-orange hover:text-orange; }
   .chip { @apply text-xs uppercase tracking-[0.25em] text-charcoal/50; }
+  .section-rule { @apply mt-4 h-px w-24 origin-left bg-charcoal/10; transform: scaleX(0.4); }
 }
 
 .reveal { opacity: 0; transform: translateY(18px); }
 .reveal[data-visible='true'] { opacity: 1; transform: translateY(0); animation: fadeUp 650ms ease-out forwards; }
+.reveal[data-visible='true'] .section-rule { animation: pulseLine 1600ms ease-in-out infinite; }
+
+@media (hover: hover) {
+  .card:hover { transform: translateY(-2px); }
+}
+
+@keyframes gridDrift {
+  0%, 100% { transform: translateY(0); opacity: 0.16; }
+  50% { transform: translateY(-10px); opacity: 0.22; }
+}
+
+@keyframes mascotBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.mascot-bob { animation: mascotBob 3.2s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+  .mascot-bob { animation: none; }
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }

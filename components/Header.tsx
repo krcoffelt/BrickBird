@@ -24,7 +24,7 @@ export function Header({ onBook }: Props) {
       <div className="container-tight flex items-center justify-between py-4">
         <Link href="#" className="flex items-center gap-3 text-lg font-semibold text-charcoal">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-charcoal text-white">
-            <svg viewBox="0 0 64 64" className="h-6 w-6" aria-hidden>
+            <svg viewBox="0 0 64 64" className="mascot-bob h-6 w-6" aria-hidden>
               <path d="M8 32c12-8 20-8 32 0v6l-16 8-16-8z" fill="currentColor" opacity="0.9" />
               <path d="M24 20c6-6 14-8 26-4l-8 6c-4 2-9 6-12 12l-6-14z" fill="currentColor" opacity="0.6" />
               <rect x="30" y="34" width="14" height="10" rx="2" fill="currentColor" opacity="0.9" />

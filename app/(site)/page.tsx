@@ -5,8 +5,8 @@ import { Header } from '../../components/Header';
 import { CTAButton } from '../../components/CTAButton';
 import { Badge } from '../../components/Badge';
 import { Modal } from '../../components/Modal';
-import { PriceEstimator } from '../../components/PriceEstimator';
 import { BeforeAfter } from '../../components/BeforeAfter';
+import { Reveal } from '../../components/Reveal';
 import { useReveal } from '../../lib/useReveal';
 import { CheckIcon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
@@ -83,7 +83,10 @@ function Section({ id, title, kicker, children }: { id: string; title: string; k
       <div ref={ref} className={`container-tight reveal`} data-visible={visible}>
         {kicker && <p className="chip">{kicker}</p>}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>
+          <div>
+            <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>
+            <div className="section-rule" aria-hidden />
+          </div>
         </div>
         <div className="mt-8">{children}</div>
       </div>
@@ -138,41 +141,45 @@ function Testimonials() {
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {quotes.map((q, i) => (
-        <div key={i} className="card p-5 text-sm text-charcoal/80">
-          <div className="mb-2 h-1 w-10 rounded-full bg-orange" />
-          {q}
-        </div>
+        <Reveal key={q} delayMs={i * 80}>
+          <div className="card p-5 text-sm text-charcoal/80">
+            <div className="mb-2 h-1 w-10 rounded-full bg-orange" />
+            {q}
+          </div>
+        </Reveal>
       ))}
     </div>
   );
 }
 
-function Pricing() {
+function Pricing({ onBook }: { onBook: () => void }) {
   return (
     <div className="grid-auto">
-      {pricing.map((tier) => (
-        <div key={tier.name} className="card flex flex-col p-6">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="chip">{tier.name}</p>
-              <h3 className="text-2xl font-semibold">{tier.price}</h3>
-              <p className="text-sm text-charcoal/70">{tier.ideal}</p>
+      {pricing.map((tier, i) => (
+        <Reveal key={tier.name} delayMs={i * 90}>
+          <div className="card flex flex-col p-6">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="chip">{tier.name}</p>
+                <h3 className="text-2xl font-semibold">{tier.price}</h3>
+                <p className="text-sm text-charcoal/70">{tier.ideal}</p>
+              </div>
+              <div className="rounded-full bg-orange/10 px-3 py-1 text-xs font-semibold text-orange">Clear</div>
             </div>
-            <div className="rounded-full bg-orange/10 px-3 py-1 text-xs font-semibold text-orange">Simple</div>
+            <ul className="mt-6 space-y-3 text-sm text-charcoal/80">
+              {tier.includes.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <CheckIcon className="mt-0.5 h-4 w-4 text-orange" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
+            <CTAButton className="mt-auto w-full" onClick={onBook}>
+              Book a Call
+            </CTAButton>
           </div>
-          <ul className="mt-6 space-y-3 text-sm text-charcoal/80">
-            {tier.includes.map((item) => (
-              <li key={item} className="flex items-start gap-2">
-                <CheckIcon className="mt-0.5 h-4 w-4 text-orange" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
-          <CTAButton className="mt-auto w-full" onClick={() => document.getElementById('book')?.scrollIntoView({ behavior: 'smooth' })}>
-            Choose {tier.name}
-          </CTAButton>
-        </div>
+        </Reveal>
       ))}
     </div>
   );
@@ -188,14 +195,16 @@ function Process() {
   return (
     <div className="grid gap-4 md:grid-cols-4">
       {steps.map(([title, desc], idx) => (
-        <div key={title} className="card p-5">
-          <div className="flex items-center gap-2 text-sm font-semibold text-charcoal">
-            <span className="pill bg-charcoal text-white text-xs">{idx + 1}</span>
-            {title}
+        <Reveal key={title} delayMs={idx * 80}>
+          <div className="card p-5">
+            <div className="flex items-center gap-2 text-sm font-semibold text-charcoal">
+              <span className="pill bg-charcoal text-white text-xs">{idx + 1}</span>
+              {title}
+            </div>
+            <p className="mt-3 text-sm text-charcoal/70">{desc}</p>
+            {idx === 0 && <p className="mt-4 text-xs text-orange">Week 1 setup, then weekly updates.</p>}
           </div>
-          <p className="mt-3 text-sm text-charcoal/70">{desc}</p>
-          {idx === 0 && <p className="mt-4 text-xs text-orange">Week 1 setup, then weekly updates.</p>}
-        </div>
+        </Reveal>
       ))}
     </div>
   );
@@ -290,7 +299,7 @@ export default function Page() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-charcoal text-white">
-                    <svg viewBox="0 0 64 64" className="h-7 w-7" aria-hidden>
+                    <svg viewBox="0 0 64 64" className="mascot-bob h-7 w-7" aria-hidden>
                       <path d="M8 32c12-8 20-8 32 0v6l-16 8-16-8z" fill="currentColor" opacity="0.9" />
                       <path d="M24 20c6-6 14-8 26-4l-8 6c-4 2-9 6-12 12l-6-14z" fill="currentColor" opacity="0.6" />
                       <rect x="30" y="34" width="14" height="10" rx="2" fill="currentColor" opacity="0.9" />
@@ -298,36 +307,45 @@ export default function Page() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-charcoal">BrickBird Care</p>
-                    <p className="text-xs text-charcoal/60">Live status · On schedule</p>
+                    <p className="text-xs text-charcoal/60">Weekly upkeep, quietly consistent.</p>
                   </div>
                 </div>
                 <span className="pill bg-orange/15 text-orange">Weekly</span>
               </div>
-              <div className="mt-6 space-y-3 text-sm text-charcoal/80">
-                <div className="flex items-center justify-between rounded-lg border border-charcoal/5 bg-sand/60 p-3">
-                  <div>
-                    <p className="font-semibold">Google posts</p>
-                    <p className="text-xs text-charcoal/60">Queued for Friday 9am</p>
+              <div className="mt-6">
+                <p className="chip">This week</p>
+                <ul className="mt-3 space-y-3 text-sm text-charcoal/80">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-orange" />
+                    <div>
+                      <p className="font-semibold">Google profile refreshed</p>
+                      <p className="text-xs text-charcoal/60">Posts + photos aligned to what you sell now.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-orange" />
+                    <div>
+                      <p className="font-semibold">Website tuned</p>
+                      <p className="text-xs text-charcoal/60">Promo + CTA tightened. Speed basics checked.</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-orange" />
+                    <div>
+                      <p className="font-semibold">Reviews in motion</p>
+                      <p className="text-xs text-charcoal/60">Reply templates applied. Ask link ready.</p>
+                    </div>
+                  </li>
+                </ul>
+                <div className="mt-6 rounded-xl border border-charcoal/10 bg-white/70 p-4">
+                  <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/40">
+                    <span>Updates shipped</span>
+                    <span className="text-orange">3</span>
                   </div>
-                  <span className="pill bg-white text-orange">3 ready</span>
-                </div>
-                <div className="flex items-center justify-between rounded-lg border border-charcoal/5 bg-white/80 p-3">
-                  <div>
-                    <p className="font-semibold">Site edits</p>
-                    <p className="text-xs text-charcoal/60">Promo bar + hours update</p>
+                  <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-charcoal/5">
+                    <div className="h-full w-2/3 origin-left rounded-full bg-orange/80 animate-pulseLine" />
                   </div>
-                  <span className="pill bg-white text-charcoal">In QA</span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-charcoal/5 bg-white/80 p-3">
-                  <div>
-                    <p className="font-semibold">Reviews</p>
-                    <p className="text-xs text-charcoal/60">5 replies drafted</p>
-                  </div>
-                  <span className="pill bg-orange/10 text-orange">Review</span>
-                </div>
-              </div>
-              <div className="mt-6 rounded-xl border border-orange/20 bg-orange/10 p-4 text-sm">
-                “Just keep us chosen each week.” — our favorite brief.
               </div>
             </div>
           </div>
@@ -335,17 +353,19 @@ export default function Page() {
 
         <Section id="services" title="Services" kicker="What we handle">
           <div className="grid-auto">
-            {services.map((service) => (
-              <div key={service.title} className="card p-6">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-lg bg-orange/15" />
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
+            {services.map((service, i) => (
+              <Reveal key={service.title} delayMs={i * 80}>
+                <div className="card p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-lg bg-orange/15" />
+                    <h3 className="text-xl font-semibold">{service.title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-charcoal/70">{service.desc}</p>
+                  <button className="mt-4 text-sm font-semibold text-orange hover:underline" onClick={() => setOpen(true)}>
+                    Book a call →
+                  </button>
                 </div>
-                <p className="mt-3 text-sm text-charcoal/70">{service.desc}</p>
-                <button className="mt-4 text-sm font-semibold text-orange hover:underline" onClick={() => setOpen(true)}>
-                  Book a call →
-                </button>
-              </div>
+              </Reveal>
             ))}
           </div>
         </Section>
@@ -361,10 +381,8 @@ export default function Page() {
         </Section>
 
         <Section id="pricing" title="Pricing" kicker="Clear plans">
-          <Pricing />
-          <div className="mt-6">
-            <PriceEstimator />
-          </div>
+          <Pricing onBook={() => { setOpen(true); setSubmitted(false); }} />
+          <p className="mt-6 text-sm text-charcoal/70">Not sure? Book a call and we’ll recommend the right cadence.</p>
         </Section>
 
         <Section id="process" title="Process" kicker="Tidy and predictable">
@@ -381,91 +399,33 @@ export default function Page() {
               <p className="chip">Ready when you are</p>
               <h2 className="mt-2 text-3xl font-semibold">Let’s keep you chosen.</h2>
               <p className="mt-3 text-charcoal/75">We’ll review your site + GBP, suggest a plan, and start updates in Week 1.</p>
-              <div className="mt-6 rounded-xl bg-sand p-4 text-sm text-charcoal/80">
-                Calendly or your scheduler embed could live here. For now, we’ll confirm by email.
-              </div>
+              <ul className="mt-6 space-y-2 text-sm text-charcoal/80">
+                <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Accuracy sweep (hours, services, categories).</li>
+                <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Quick conversion fixes (CTA, clarity, speed basics).</li>
+                <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Update cadence recommendation (weekly vs monthly).</li>
+              </ul>
               <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-charcoal/80">
                 <div className="flex items-center gap-2"><EnvelopeIcon className="h-4 w-4" /> hello@brickbird.studio</div>
                 <div className="flex items-center gap-2"><PhoneIcon className="h-4 w-4" /> (555) 123-0199</div>
               </div>
             </div>
-            <div className="card border border-charcoal/10 p-6 shadow-card">
-              <h3 className="text-lg font-semibold text-charcoal">Book a Call</h3>
-              <p className="text-sm text-charcoal/70">Tell us about your locations and platforms.</p>
-              <form className="mt-4 space-y-3" onSubmit={handleSubmit}>
-                <div>
-                  <label className="text-sm font-medium text-charcoal">Name</label>
-                  <input
-                    required
-                    className="mt-1 w-full rounded-lg border border-charcoal/10 bg-white px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  />
+            <Reveal delayMs={120}>
+              <div className="card border border-charcoal/10 p-6 shadow-card">
+                <h3 className="text-lg font-semibold text-charcoal">Book a Call</h3>
+                <p className="text-sm text-charcoal/70">15 minutes. We’ll look live, pick a cadence, and ship Week 1 updates.</p>
+                <div className="mt-4 rounded-xl bg-sand p-4 text-sm text-charcoal/80">
+                  Booking embed placeholder (Calendly iframe). Add your link anytime.
                 </div>
-                <div>
-                  <label className="text-sm font-medium text-charcoal">Business name</label>
-                  <input
-                    className="mt-1 w-full rounded-lg border border-charcoal/10 bg-white px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
-                    value={form.business}
-                    onChange={(e) => setForm({ ...form, business: e.target.value })}
-                  />
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div>
-                    <label className="text-sm font-medium text-charcoal">Website or GBP link</label>
-                    <input
-                      className="mt-1 w-full rounded-lg border border-charcoal/10 bg-white px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
-                      value={form.link}
-                      onChange={(e) => setForm({ ...form, link: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-charcoal">Email</label>
-                    <input
-                      type="email"
-                      required
-                      className="mt-1 w-full rounded-lg border border-charcoal/10 bg-white px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    />
-                  </div>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div>
-                    <label className="text-sm font-medium text-charcoal">Phone</label>
-                    <input
-                      className="mt-1 w-full rounded-lg border border-charcoal/10 bg-white px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-charcoal">How often to update?</label>
-                    <select
-                      className="mt-1 w-full rounded-lg border border-charcoal/10 bg-white px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
-                    value={form.frequency}
-                    onChange={(e) => setForm({ ...form, frequency: e.target.value })}
-                  >
-                    <option value="monthly">Monthly rhythm</option>
-                    <option value="weekly">Weekly rhythm</option>
-                  </select>
-                </div>
-                </div>
-                <label className="flex items-center gap-2 text-sm text-charcoal/70">
-                  <input
-                    type="checkbox"
-                    checked={form.agree}
-                    onChange={(e) => setForm({ ...form, agree: e.target.checked })}
-                    className="text-orange focus:ring-orange"
-                  />
-                  Quick audit is okay? We’ll review your site + GBP.
-                </label>
-                <CTAButton type="submit" className="w-full">
-                  {submitted ? 'Sent — we’ll reply today' : 'Send request'}
+                <CTAButton
+                  className="mt-5 w-full"
+                  onClick={() => { setOpen(true); setSubmitted(false); }}
+                  aria-haspopup="dialog"
+                >
+                  Open booking form
                 </CTAButton>
-              </form>
-              <p className="mt-3 text-xs text-charcoal/60">We’ll confirm within one business day. No spam.</p>
-            </div>
+                <p className="mt-3 text-xs text-charcoal/60">We’ll confirm within one business day. No spam.</p>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>
