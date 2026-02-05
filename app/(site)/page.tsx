@@ -13,15 +13,15 @@ import { CheckIcon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 const services = [
   {
     title: 'Website Upkeep',
-    desc: 'Edits, new sections, seasonal promos, and speed basics—kept sharp week to week.',
+    desc: 'Quick edits, new sections, seasonal promos, and the basics that keep your site feeling cared for.',
   },
   {
     title: 'Google Profile',
-    desc: 'Posts, photos, Q&A, and updates that match how customers search right now.',
+    desc: 'Posts, photos, Q&A, and category updates that match how customers actually search.',
   },
   {
     title: 'Reviews & Reputation',
-    desc: 'A review link system and reply templates that build trust (and keep momentum).',
+    desc: 'A review link system plus reply templates so you respond fast—and sound like you.',
   },
 ];
 
@@ -29,35 +29,35 @@ const pricing = [
   {
     name: 'Essentials',
     price: '$690/mo',
-    ideal: 'One location, monthly cadence.',
-    includes: ['Website + GBP refresh monthly', 'Speed + accessibility basics', 'Monthly highlights note'],
+    ideal: 'One location. Monthly care.',
+    includes: ['Monthly website + GBP refresh', 'Speed + accessibility basics', 'Simple monthly highlights'],
   },
   {
     name: 'Momentum',
     price: '$1,090/mo',
-    ideal: 'Weekly presence, steady lift.',
-    includes: ['Weekly GBP posts + photo drops', 'Website edits + promo launches', 'Monthly conversion snapshot'],
+    ideal: 'Weekly presence. More momentum.',
+    includes: ['Weekly GBP posts + photo updates', 'Website edits + promo launches', 'Monthly conversion snapshot'],
   },
   {
     name: 'Partner',
     price: '$1,690/mo',
-    ideal: 'High-tempo, more hands-on.',
+    ideal: 'High tempo. More hands-on.',
     includes: ['Weekly site + GBP updates', 'Review system + response triage', 'Strategy sync + experiments'],
   },
 ];
 
 const faqs = [
-  ['Do you build new websites?', 'We focus on keeping what you have current. If you need a rebuild, we can scope it separately.'],
-  ['How fast do you move?', 'Kickoff in Week 1. First changes in 7 days, then weekly or monthly updates.'],
-  ['What access do you need?', 'Editor access to your site/CMS and Google Business Profile, plus a place to triage reviews.'],
+  ['Do you build new websites?', 'We focus on upkeep. If you need a rebuild, we’ll scope it separately (and keep it sane).'],
+  ['How fast do you move?', 'Kickoff in Week 1. First fixes land in 7 days, then updates weekly or monthly.'],
+  ['What access do you need?', 'Editor access to your site/CMS + Google Business Profile. That’s usually it.'],
   ['Squarespace or WordPress okay?', 'Yes—Squarespace, WordPress, Webflow, Shopify, and most CMS platforms.'],
-  ['Contracts?', 'Month-to-month. Stay because it’s working, not because you’re locked in.'],
-  ['What results should I expect?', 'Cleaner listings, fresher visuals, better click-to-call and direction requests.'],
-  ['What is not included?', 'Ad spend, full rebrands, heavy custom dev, or net-new photography shoots.'],
+  ['Contracts?', 'Month-to-month. Pause or cancel anytime before your next billing date.'],
+  ['What results should I expect?', 'Cleaner info, fresher visuals, and more clicks to call / directions—because you look active.'],
+  ['What is not included?', 'Ad spend, full rebrands, heavy custom dev, or net-new photo shoots.'],
 ];
 
 function TrustBullets() {
-  const items = [['Fast'], ['Simple'], ['Measurable']];
+  const items = [['Fast updates'], ['Low lift'], ['Proof monthly']];
   return (
     <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-charcoal/70">
       {items.map(([title], idx) => (
@@ -77,15 +77,15 @@ function HeroVisual() {
       <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-orange/15 blur-2xl" aria-hidden />
       <div className="absolute -bottom-14 -left-10 h-52 w-52 rounded-full bg-glow/20 blur-3xl" aria-hidden />
       <div className="relative">
-        <p className="chip">What you get</p>
-        <h3 className="mt-2 text-2xl font-semibold">Always current.</h3>
-        <p className="mt-2 text-sm text-charcoal/70">The stuff people check before they call.</p>
+        <p className="chip">What we maintain</p>
+        <h3 className="mt-2 text-2xl font-semibold">The trust layer.</h3>
+        <p className="mt-2 text-sm text-charcoal/70">The places customers verify you before they choose you.</p>
 
         <div className="mt-6 grid gap-3">
           {[
-            ['Website', 'Fresh copy + promos'],
-            ['Google Profile', 'Posts + photos'],
-            ['Reviews', 'Asks + replies'],
+            ['Website', 'Clarity, promos, and polish'],
+            ['Google Profile', 'Posts, photos, Q&A'],
+            ['Reviews', 'Asks, replies, momentum'],
           ].map(([label, sub]) => (
             <div key={label} className="flex items-center justify-between rounded-xl border border-charcoal/10 bg-white/70 p-4">
               <div>
@@ -125,11 +125,11 @@ function DashboardMock() {
     <div className="card grid gap-6 p-6 md:grid-cols-2">
       <div>
         <p className="chip">Example outcomes</p>
-        <h3 className="text-lg font-semibold">More calls. More direction requests. More “they look legit.”</h3>
+        <h3 className="text-lg font-semibold">More calls. More direction requests. More confidence.</h3>
         <ul className="mt-4 space-y-3 text-sm text-charcoal/80">
           <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Accurate hours + services everywhere.</li>
           <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Consistent posting keeps you visible.</li>
-          <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Review replies show you care (and help relevance).</li>
+          <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-orange" /> Replies show you care (and help relevance).</li>
         </ul>
       </div>
       <div className="rounded-xl border border-charcoal/10 bg-gradient-to-br from-white to-sand p-4">
@@ -151,7 +151,7 @@ function DashboardMock() {
           ))}
         </div>
         <div className="mt-4 rounded-lg border border-orange/30 bg-orange/10 p-3 text-xs text-charcoal/80">
-          Weekly drop: highlights, fixes shipped, next moves. No fluff.
+          Weekly drop: what shipped, what changed, and what’s next.
         </div>
       </div>
     </div>
@@ -161,8 +161,8 @@ function DashboardMock() {
 function Testimonials() {
   const quotes = [
     '“We finally look current online—and the calls followed.”',
-    '“Changes go live without hand-holding. Total relief.”',
-    '“Our review replies sound like a real person. Finally.”',
+    '“We send one note. It’s done. Huge relief.”',
+    '“The replies sound like us now. Customers notice.”',
   ];
   return (
     <div className="grid gap-4 md:grid-cols-3">
@@ -201,9 +201,9 @@ function Pricing({ onBook }: { onBook: () => void }) {
               ))}
             </ul>
             <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
-              <CTAButton className="mt-auto w-full" onClick={onBook}>
-                Book a Call
-              </CTAButton>
+            <CTAButton className="mt-auto w-full" onClick={onBook}>
+              Book a Call
+            </CTAButton>
           </div>
         </Reveal>
       ))}
@@ -213,10 +213,10 @@ function Pricing({ onBook }: { onBook: () => void }) {
 
 function Process() {
   const steps = [
-    ['Audit', 'Access + quick wins mapped.'],
-    ['Update', 'Site + GBP content refreshed.'],
-    ['Publish', 'Changes live with confirmations.'],
-    ['Report', 'Friday drop: results + next moves.'],
+    ['Audit', 'Access + priorities in one place.'],
+    ['Update', 'We make changes (fast).'],
+    ['Publish', 'Live with confirmations.'],
+    ['Report', 'A short report you’ll actually read.'],
   ];
   return (
     <div className="grid gap-4 md:grid-cols-4">
@@ -307,9 +307,9 @@ export default function Page() {
         <section className="container-tight grid gap-10 pb-16 pt-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center" id="top">
           <div ref={heroReveal.ref} className="reveal" data-visible={heroReveal.visible}>
             <Badge>Always Found · Build trust. Get seen.</Badge>
-            <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">Your business, always found.</h1>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">Always found. Always chosen.</h1>
             <p className="mt-4 max-w-xl text-lg text-charcoal/75">
-              We keep your website, Google profile, and reviews current—so you show up and look trustworthy every day.
+              We keep your website, Google profile, and reviews current—so you show up, look active, and get picked.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {bookButton}
@@ -373,7 +373,7 @@ export default function Page() {
             <div>
               <p className="chip">Ready when you are</p>
               <h2 className="mt-2 text-3xl font-semibold">Let’s keep you findable.</h2>
-              <p className="mt-3 text-charcoal/75">We’ll review your site + Google profile, suggest a cadence, and ship Week 1 updates.</p>
+              <p className="mt-3 text-charcoal/75">We’ll review your site + Google profile, recommend a cadence, and ship Week 1 updates.</p>
               <ul className="mt-6 space-y-2 text-sm text-charcoal/80">
                 <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Accuracy sweep (hours, services, categories).</li>
                 <li className="flex items-start gap-2"><CheckIcon className="mt-0.5 h-4 w-4 text-orange" /> Quick conversion fixes (CTA, clarity, speed basics).</li>
@@ -387,9 +387,9 @@ export default function Page() {
             <Reveal delayMs={120}>
               <div className="card border border-charcoal/10 p-6 shadow-card">
                 <h3 className="text-lg font-semibold text-charcoal">Book a Call</h3>
-                <p className="text-sm text-charcoal/70">15 minutes. We’ll look live, pick a cadence, and ship Week 1 updates.</p>
+                <p className="text-sm text-charcoal/70">15 minutes. We’ll look live, pick a cadence, and map Week 1.</p>
                 <div className="mt-4 rounded-xl bg-sand p-4 text-sm text-charcoal/80">
-                  Booking embed placeholder (Calendly iframe). Add your link anytime.
+                  Booking embed placeholder (Calendly iframe). Drop your link anytime.
                 </div>
                 <CTAButton
                   className="mt-5 w-full"
@@ -409,6 +409,7 @@ export default function Page() {
 
       <Modal open={open} onClose={() => setOpen(false)} title="Always Found call">
         <form className="space-y-3" onSubmit={handleSubmit}>
+          <p className="text-sm text-charcoal/70">Tell us where customers should find you. We’ll reply within one business day.</p>
           <div>
             <label className="text-sm font-medium text-charcoal">Name</label>
             <input
@@ -419,7 +420,7 @@ export default function Page() {
             />
           </div>
           <div>
-            <label className="text-sm font-medium text-charcoal">Business + Link</label>
+            <label className="text-sm font-medium text-charcoal">Business + website/GBP link</label>
             <input
               className="mt-1 w-full rounded-lg border border-charcoal/10 px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
               value={form.link}

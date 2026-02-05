@@ -7,7 +7,7 @@ const space = Space_Grotesk({ subsets: ['latin'], variable: '--font-space', disp
 
 export const metadata: Metadata = {
   title: 'Always Found — Build trust. Get seen.',
-  description: 'Monthly upkeep for your website, Google Business Profile, and reviews so you stay accurate and get chosen.',
+  description: 'Ongoing upkeep for your website, Google Business Profile, and reviews—so you stay current and get chosen.',
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };
 
