@@ -47,7 +47,7 @@ body::before {
   .section-pad { @apply py-12 lg:py-20; }
   .focus-ring { @apply focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2; }
   .btn { @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2; }
-  .btn-primary { @apply bg-orange text-charcoal shadow hover:-translate-y-0.5 hover:shadow-card focus-visible:ring-orange focus-visible:ring-offset-2; }
+  .btn-primary { @apply bg-orange text-white shadow hover:-translate-y-0.5 hover:shadow-card focus-visible:ring-orange focus-visible:ring-offset-2; }
   .btn-secondary { @apply border border-charcoal/10 bg-white text-charcoal hover:border-orange hover:text-orange; }
   .chip { @apply text-xs uppercase tracking-[0.25em] text-charcoal/50; }
   .section-rule { @apply mt-4 h-px w-24 origin-left bg-charcoal/10; transform: scaleX(0.4); }
