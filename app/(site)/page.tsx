@@ -27,20 +27,26 @@ const services = [
 
 const pricing = [
   {
+    name: 'Free',
+    price: '$0',
+    ideal: 'A starter kit to get moving today.',
+    includes: ['GBP tune-up checklist', 'Review link + QR templates', 'Simple posting prompts (30 days)'],
+  },
+  {
     name: 'Essentials',
-    price: '$690/mo',
+    price: '$249/mo',
     ideal: 'One location. Monthly care.',
-    includes: ['Monthly website + GBP refresh', 'Speed + accessibility basics', 'Simple monthly highlights'],
+    includes: ['Monthly website + GBP refresh', 'Light review system setup', 'Monthly highlights + next steps'],
   },
   {
     name: 'Momentum',
-    price: '$1,090/mo',
+    price: '$449/mo',
     ideal: 'Weekly presence. More momentum.',
     includes: ['Weekly GBP posts + photo updates', 'Website edits + promo launches', 'Monthly conversion snapshot'],
   },
   {
     name: 'Partner',
-    price: '$1,690/mo',
+    price: '$699/mo',
     ideal: 'High tempo. More hands-on.',
     includes: ['Weekly site + GBP updates', 'Review system + response triage', 'Strategy sync + experiments'],
   },
@@ -178,7 +184,7 @@ function Testimonials() {
   );
 }
 
-function Pricing({ onBook }: { onBook: () => void }) {
+function Pricing({ onPick }: { onPick: (plan: string) => void }) {
   return (
     <div className="grid-auto">
       {pricing.map((tier, i) => (
@@ -190,7 +196,9 @@ function Pricing({ onBook }: { onBook: () => void }) {
                 <h3 className="text-2xl font-semibold">{tier.price}</h3>
                 <p className="text-sm text-charcoal/70">{tier.ideal}</p>
               </div>
-              <div className="rounded-full bg-orange/10 px-3 py-1 text-xs font-semibold text-orange">Clear</div>
+              <div className="rounded-full bg-orange/10 px-3 py-1 text-xs font-semibold text-orange">
+                {tier.name === 'Free' ? 'Starter' : 'Monthly'}
+              </div>
             </div>
             <ul className="mt-6 space-y-3 text-sm text-charcoal/80">
               {tier.includes.map((item) => (
@@ -200,10 +208,13 @@ function Pricing({ onBook }: { onBook: () => void }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
-            <CTAButton className="mt-auto w-full" onClick={onBook}>
-              Book a Call
+            {tier.name !== 'Free' && (
+              <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
+            )}
+            <CTAButton className="mt-auto w-full" onClick={() => onPick(tier.name)}>
+              {tier.name === 'Free' ? 'Get the free kit' : 'Book a Call'}
             </CTAButton>
+            {tier.name === 'Free' && <p className="mt-3 text-xs text-charcoal/60">No credit card. Use it even if you never hire us.</p>}
           </div>
         </Reveal>
       ))}
@@ -282,8 +293,14 @@ export default function Page() {
     email: '',
     phone: '',
     frequency: 'monthly',
+    plan: 'Momentum',
     agree: false,
   });
+  const openWithPlan = (plan: string) => {
+    setForm((prev) => ({ ...prev, plan }));
+    setOpen(true);
+    setSubmitted(false);
+  };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email) return alert('Name and email please.');
@@ -294,7 +311,7 @@ export default function Page() {
   const heroReveal = useReveal<HTMLDivElement>();
 
   const bookButton = (
-    <CTAButton onClick={() => { setOpen(true); setSubmitted(false); }} aria-haspopup="dialog">
+    <CTAButton onClick={() => openWithPlan('Momentum')} aria-haspopup="dialog">
       Book a Call
     </CTAButton>
   );
@@ -356,7 +373,7 @@ export default function Page() {
         </Section>
 
         <Section id="pricing" title="Pricing" kicker="Clear plans">
-          <Pricing onBook={() => { setOpen(true); setSubmitted(false); }} />
+          <Pricing onPick={(plan) => openWithPlan(plan)} />
           <p className="mt-6 text-sm text-charcoal/70">Not sure? Book a call and we’ll recommend the right cadence.</p>
         </Section>
 
@@ -393,7 +410,7 @@ export default function Page() {
                 </div>
                 <CTAButton
                   className="mt-5 w-full"
-                  onClick={() => { setOpen(true); setSubmitted(false); }}
+                  onClick={() => openWithPlan('Momentum')}
                   aria-haspopup="dialog"
                 >
                   Open booking form
@@ -410,6 +427,33 @@ export default function Page() {
       <Modal open={open} onClose={() => setOpen(false)} title="Always Found call">
         <form className="space-y-3" onSubmit={handleSubmit}>
           <p className="text-sm text-charcoal/70">Tell us where customers should find you. We’ll reply within one business day.</p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div>
+              <label className="text-sm font-medium text-charcoal">Interested in</label>
+              <select
+                className="mt-1 w-full rounded-lg border border-charcoal/10 px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
+                value={form.plan}
+                onChange={(e) => setForm({ ...form, plan: e.target.value })}
+              >
+                {pricing.map((t) => (
+                  <option key={t.name} value={t.name}>
+                    {t.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="text-sm font-medium text-charcoal">Update rhythm</label>
+              <select
+                className="mt-1 w-full rounded-lg border border-charcoal/10 bg-white px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
+                value={form.frequency}
+                onChange={(e) => setForm({ ...form, frequency: e.target.value })}
+              >
+                <option value="monthly">Monthly</option>
+                <option value="weekly">Weekly</option>
+              </select>
+            </div>
+          </div>
           <div>
             <label className="text-sm font-medium text-charcoal">Name</label>
             <input
@@ -457,7 +501,7 @@ export default function Page() {
             Quick audit is okay before our call.
           </label>
           <CTAButton type="submit" className="w-full">
-            {submitted ? 'Sent — watch your inbox' : 'Book the call'}
+            {submitted ? 'Sent — watch your inbox' : form.plan === 'Free' ? 'Send me the kit' : 'Book the call'}
           </CTAButton>
         </form>
       </Modal>
