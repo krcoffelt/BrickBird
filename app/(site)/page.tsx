@@ -29,8 +29,8 @@ const pricing = [
   {
     name: 'Free',
     price: '$0',
-    ideal: 'A starter kit to get moving today.',
-    includes: ['GBP tune-up checklist', 'Review link + QR templates', 'Simple posting prompts (30 days)'],
+    ideal: 'A baseline audit of what’s live today.',
+    includes: ['Website + GBP accuracy audit', 'Top 10 quick wins (prioritized)', 'Scorecard + next-step plan'],
   },
   {
     name: 'Essentials',
@@ -212,9 +212,9 @@ function Pricing({ onPick }: { onPick: (plan: string) => void }) {
               <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
             )}
             <CTAButton className="mt-auto w-full" onClick={() => onPick(tier.name)}>
-              {tier.name === 'Free' ? 'Get the free kit' : 'Book a Call'}
+              {tier.name === 'Free' ? 'Get the free audit' : 'Book a Call'}
             </CTAButton>
-            {tier.name === 'Free' && <p className="mt-3 text-xs text-charcoal/60">No credit card. Use it even if you never hire us.</p>}
+            {tier.name === 'Free' && <p className="mt-3 text-xs text-charcoal/60">No credit card. No pitch deck. Just a clear baseline.</p>}
           </div>
         </Reveal>
       ))}
@@ -426,7 +426,11 @@ export default function Page() {
 
       <Modal open={open} onClose={() => setOpen(false)} title="Always Found call">
         <form className="space-y-3" onSubmit={handleSubmit}>
-          <p className="text-sm text-charcoal/70">Tell us where customers should find you. We’ll reply within one business day.</p>
+          <p className="text-sm text-charcoal/70">
+            {form.plan === 'Free'
+              ? 'We’ll run a quick audit of what’s live today and send back your scorecard + top fixes.'
+              : 'Tell us where customers should find you. We’ll reply within one business day.'}
+          </p>
           <div className="grid gap-3 sm:grid-cols-2">
             <div>
               <label className="text-sm font-medium text-charcoal">Interested in</label>
@@ -501,7 +505,7 @@ export default function Page() {
             Quick audit is okay before our call.
           </label>
           <CTAButton type="submit" className="w-full">
-            {submitted ? 'Sent — watch your inbox' : form.plan === 'Free' ? 'Send me the kit' : 'Book the call'}
+            {submitted ? 'Sent — watch your inbox' : form.plan === 'Free' ? 'Send me the audit' : 'Book the call'}
           </CTAButton>
         </form>
       </Modal>
