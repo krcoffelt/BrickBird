@@ -25,32 +25,37 @@ const services = [
   },
 ];
 
-const pricing = [
-  {
-    name: 'Free',
-    price: '$0',
-    ideal: 'A baseline audit of what’s live today.',
-    includes: ['Website + GBP accuracy audit', 'Top 10 quick wins (prioritized)', 'Scorecard + next-step plan'],
-  },
+const freeAudit = {
+  name: 'Free audit',
+  price: '$0',
+  ideal: 'A baseline audit of what’s live today.',
+  includes: ['Website + GBP accuracy audit', 'Top 10 quick wins (prioritized)', 'Scorecard + next-step plan'],
+} as const;
+
+const paidPricing = [
   {
     name: 'Essentials',
+    cadence: 'Monthly',
     price: '$249/mo',
     ideal: 'One location. Monthly care.',
     includes: ['Monthly website + GBP refresh', 'Light review system setup', 'Monthly highlights + next steps'],
   },
   {
     name: 'Momentum',
+    cadence: 'Weekly',
     price: '$449/mo',
     ideal: 'Weekly presence. More momentum.',
     includes: ['Weekly GBP posts + photo updates', 'Website edits + promo launches', 'Monthly conversion snapshot'],
+    featured: true,
   },
   {
     name: 'Partner',
+    cadence: 'Weekly',
     price: '$699/mo',
     ideal: 'High tempo. More hands-on.',
     includes: ['Weekly site + GBP updates', 'Review system + response triage', 'Strategy sync + experiments'],
   },
-];
+] as const;
 
 const faqs = [
   ['Do you build new websites?', 'We focus on upkeep. If you need a rebuild, we’ll scope it separately (and keep it sane).'],
@@ -186,38 +191,74 @@ function Testimonials() {
 
 function Pricing({ onPick }: { onPick: (plan: string) => void }) {
   return (
-    <div className="grid-auto">
-      {pricing.map((tier, i) => (
-        <Reveal key={tier.name} delayMs={i * 90}>
-          <div className="card flex flex-col p-6">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="chip">{tier.name}</p>
-                <h3 className="text-2xl font-semibold">{tier.price}</h3>
-                <p className="text-sm text-charcoal/70">{tier.ideal}</p>
-              </div>
-              <div className="rounded-full bg-orange/10 px-3 py-1 text-xs font-semibold text-orange">
-                {tier.name === 'Free' ? 'Starter' : 'Monthly'}
-              </div>
-            </div>
-            <ul className="mt-6 space-y-3 text-sm text-charcoal/80">
-              {tier.includes.map((item) => (
+    <div className="space-y-6">
+      <Reveal>
+        <div className="card grid gap-4 p-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="chip">Free</p>
+            <h3 className="mt-2 text-2xl font-semibold">{freeAudit.name}</h3>
+            <p className="mt-1 text-sm text-charcoal/70">{freeAudit.ideal}</p>
+            <ul className="mt-4 space-y-2 text-sm text-charcoal/80">
+              {freeAudit.includes.map((item) => (
                 <li key={item} className="flex items-start gap-2">
                   <CheckIcon className="mt-0.5 h-4 w-4 text-orange" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-            {tier.name !== 'Free' && (
-              <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
-            )}
-            <CTAButton className="mt-auto w-full" onClick={() => onPick(tier.name)}>
-              {tier.name === 'Free' ? 'Get the free audit' : 'Book a Call'}
-            </CTAButton>
-            {tier.name === 'Free' && <p className="mt-3 text-xs text-charcoal/60">No credit card. No pitch deck. Just a clear baseline.</p>}
+            <p className="mt-4 text-xs text-charcoal/60">No credit card. No pitch deck. Just a clear baseline.</p>
           </div>
-        </Reveal>
-      ))}
+          <div className="rounded-2xl border border-charcoal/10 bg-sand p-5">
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="chip">Deliverable</p>
+                <p className="mt-2 text-sm font-semibold text-charcoal">Scorecard + quick wins</p>
+                <p className="mt-1 text-xs text-charcoal/60">Sent by email within one business day.</p>
+              </div>
+              <span className="pill bg-orange/10 text-orange">{freeAudit.price}</span>
+            </div>
+            <CTAButton className="mt-5 w-full" onClick={() => onPick(freeAudit.name)}>
+              Get the free audit
+            </CTAButton>
+          </div>
+        </div>
+      </Reveal>
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        {paidPricing.map((tier, i) => (
+          <Reveal key={tier.name} delayMs={i * 90}>
+            <div
+              className={`card flex flex-col p-6 ${
+                'featured' in tier && tier.featured ? 'border-orange/30 bg-white' : ''
+              }`}
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="chip">{tier.name}</p>
+                  <h3 className="text-2xl font-semibold">{tier.price}</h3>
+                  <p className="text-sm text-charcoal/70">{tier.ideal}</p>
+                </div>
+                <div className="rounded-full bg-orange/10 px-3 py-1 text-xs font-semibold text-orange">{tier.cadence}</div>
+              </div>
+              {'featured' in tier && tier.featured && (
+                <p className="mt-3 text-xs font-semibold text-orange">Most popular</p>
+              )}
+              <ul className="mt-6 space-y-3 text-sm text-charcoal/80">
+                {tier.includes.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <CheckIcon className="mt-0.5 h-4 w-4 text-orange" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
+              <CTAButton className="mt-auto w-full" onClick={() => onPick(tier.name)}>
+                Book a Call
+              </CTAButton>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </div>
   );
 }
@@ -427,7 +468,7 @@ export default function Page() {
       <Modal open={open} onClose={() => setOpen(false)} title="Always Found call">
         <form className="space-y-3" onSubmit={handleSubmit}>
           <p className="text-sm text-charcoal/70">
-            {form.plan === 'Free'
+            {form.plan === freeAudit.name
               ? 'We’ll run a quick audit of what’s live today and send back your scorecard + top fixes.'
               : 'Tell us where customers should find you. We’ll reply within one business day.'}
           </p>
@@ -439,7 +480,8 @@ export default function Page() {
                 value={form.plan}
                 onChange={(e) => setForm({ ...form, plan: e.target.value })}
               >
-                {pricing.map((t) => (
+                <option value={freeAudit.name}>{freeAudit.name}</option>
+                {paidPricing.map((t) => (
                   <option key={t.name} value={t.name}>
                     {t.name}
                   </option>
@@ -452,6 +494,7 @@ export default function Page() {
                 className="mt-1 w-full rounded-lg border border-charcoal/10 bg-white px-3 py-2 text-sm focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/30"
                 value={form.frequency}
                 onChange={(e) => setForm({ ...form, frequency: e.target.value })}
+                disabled={form.plan === freeAudit.name}
               >
                 <option value="monthly">Monthly</option>
                 <option value="weekly">Weekly</option>
@@ -505,7 +548,11 @@ export default function Page() {
             Quick audit is okay before our call.
           </label>
           <CTAButton type="submit" className="w-full">
-            {submitted ? 'Sent — watch your inbox' : form.plan === 'Free' ? 'Send me the audit' : 'Book the call'}
+            {submitted
+              ? 'Sent — watch your inbox'
+              : form.plan === freeAudit.name
+                ? 'Send me the audit'
+                : 'Book the call'}
           </CTAButton>
         </form>
       </Modal>
