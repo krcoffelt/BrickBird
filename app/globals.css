@@ -42,6 +42,7 @@ body::before {
 @layer components {
   .container-tight { @apply mx-auto max-w-6xl px-6; }
   .card { @apply rounded-2xl border border-black/5 bg-white/80 backdrop-blur shadow-soft transition-transform; }
+  .card-flat { @apply rounded-2xl border border-black/5 bg-white/70 backdrop-blur; }
   .pill { @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium; }
   .grid-auto { @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3; }
   .section-pad { @apply py-12 lg:py-20; }

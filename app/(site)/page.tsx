@@ -179,7 +179,7 @@ function Testimonials() {
     <div className="grid gap-4 md:grid-cols-3">
       {quotes.map((q, i) => (
         <Reveal key={q} delayMs={i * 80}>
-          <div className="card p-5 text-sm text-charcoal/80">
+          <div className="card-flat p-5 text-sm text-charcoal/80">
             <div className="mb-2 h-1 w-10 rounded-full bg-orange" />
             {q}
           </div>
@@ -274,7 +274,7 @@ function Process() {
     <div className="grid gap-4 md:grid-cols-4">
       {steps.map(([title, desc], idx) => (
         <Reveal key={title} delayMs={idx * 80}>
-          <div className="card p-5">
+          <div className="card-flat p-5">
             <div className="flex items-center gap-2 text-sm font-semibold text-charcoal">
               <span className="pill bg-charcoal text-white text-xs">{idx + 1}</span>
               {title}
@@ -292,7 +292,7 @@ function FAQ() {
   return (
     <dl className="space-y-4">
       {faqs.map(([q, a]) => (
-        <div key={q} className="card p-5">
+        <div key={q} className="card-flat p-5">
           <dt className="text-base font-semibold text-charcoal">{q}</dt>
           <dd className="mt-2 text-sm text-charcoal/70">{a}</dd>
         </div>
@@ -388,7 +388,7 @@ export default function Page() {
           <div className="grid-auto">
             {services.map((service, i) => (
               <Reveal key={service.title} delayMs={i * 80}>
-                <div className="card p-5">
+                <div className="card-flat p-5">
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-lg bg-orange/15" />
                     <h3 className="text-xl font-semibold">{service.title}</h3>
