@@ -40,13 +40,13 @@ export function Header({ onBook }: Props) {
           ))}
         </nav>
         <div className="hidden md:block">
-          <CTAButton onClick={onBook}>Book a Call</CTAButton>
+          <CTAButton onClick={onBook}>Book a call</CTAButton>
         </div>
         <button
           className="md:hidden rounded-full border border-charcoal/10 px-3 py-2 text-sm"
           onClick={onBook}
         >
-          Book
+          Book a call
         </button>
       </div>
     </header>

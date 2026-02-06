@@ -253,7 +253,7 @@ function Pricing({ onPick }: { onPick: (plan: string) => void }) {
               </ul>
               <p className="mt-4 text-xs text-charcoal/60">Not included: ad spend, full rebrands, heavy custom dev.</p>
               <CTAButton className="mt-auto w-full" onClick={() => onPick(tier.name)}>
-                Book a Call
+                Book a call
               </CTAButton>
             </div>
           </Reveal>
@@ -353,13 +353,13 @@ export default function Page() {
 
   const bookButton = (
     <CTAButton onClick={() => openWithPlan('Momentum')} aria-haspopup="dialog">
-      Book a Call
+      Book a call
     </CTAButton>
   );
 
   return (
     <div>
-      <Header onBook={() => setOpen(true)} />
+      <Header onBook={() => openWithPlan('Momentum')} />
 
       <main>
         <section className="container-tight grid gap-8 pb-10 pt-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pb-14 lg:pt-14" id="top">
@@ -372,7 +372,7 @@ export default function Page() {
             <div className="mt-6 flex flex-wrap gap-3">
               {bookButton}
               <CTAButton variant="secondary" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>
-                See Pricing
+                See pricing
               </CTAButton>
             </div>
             <TrustBullets />
@@ -394,8 +394,8 @@ export default function Page() {
                     <h3 className="text-xl font-semibold">{service.title}</h3>
                   </div>
                   <p className="mt-3 text-sm text-charcoal/70">{service.desc}</p>
-                  <button className="mt-4 text-sm font-semibold text-orange hover:underline" onClick={() => setOpen(true)}>
-                    Book a call →
+                  <button className="mt-4 text-sm font-semibold text-orange hover:underline" onClick={() => openWithPlan('Momentum')}>
+                    Book a call
                   </button>
                 </div>
               </Reveal>
@@ -444,7 +444,7 @@ export default function Page() {
             </div>
             <Reveal delayMs={120}>
               <div className="card border border-charcoal/10 p-6 shadow-card">
-                <h3 className="text-lg font-semibold text-charcoal">Book a Call</h3>
+                <h3 className="text-lg font-semibold text-charcoal">Book a call</h3>
                 <p className="text-sm text-charcoal/70">15 minutes. We’ll look live, pick a cadence, and map Week 1.</p>
                 <div className="mt-4 rounded-xl bg-sand p-4 text-sm text-charcoal/80">
                   Booking embed placeholder (Calendly iframe). Drop your link anytime.
@@ -454,7 +454,7 @@ export default function Page() {
                   onClick={() => openWithPlan('Momentum')}
                   aria-haspopup="dialog"
                 >
-                  Open booking form
+                  Book a call
                 </CTAButton>
                 <p className="mt-3 text-xs text-charcoal/60">We’ll confirm within one business day. No spam.</p>
               </div>
